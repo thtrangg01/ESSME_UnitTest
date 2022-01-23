@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class UniversityTest extends APITestClass{
 
     @Test
-    public void getUniverity(){
+    public void getUniversity(){
         String link = "/api/universities";
         WebTarget requestTarget = client.target(BaseURL + link);
         ArrayList<Object> universities = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType<ArrayList<Object>>() {
@@ -23,4 +23,6 @@ public class UniversityTest extends APITestClass{
         int expectedResponseCode = 200;
         Assert.assertEquals(actualResponseCode,expectedResponseCode);
     }
+
+
 }
