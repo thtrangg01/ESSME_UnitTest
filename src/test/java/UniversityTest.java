@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 
 
-public class UniversityTest extends APITest{
+public class UniversityTest extends APITestClass{
 
     @Test
     public void getUniverity(){
