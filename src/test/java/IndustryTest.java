@@ -6,11 +6,10 @@ import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -44,15 +43,35 @@ public class IndustryTest extends APITestClass{
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
     }
     @Test
-    public void createIndustry(){
+    public void createIndustry() throws JsonProcessingException {
         String link = "/api/industries";
-
+        String json = "{\n" +
+                "        \"types\": [\n" +
+                "            \"gics\",\n" +
+                "            \"sub_industry\"\n" +
+                "        ],\n" +
+                "        \"names\": {\n" +
+                "            \"vi\": \"quảng cáo\",\n" +
+                "            \"en\": \"Advertising\"\n" +
+                "        },\n" +
+                "        \"level\": 3,\n" +
+                "        \"parent_id\": \"Media\",\n" +
+                "        \"synonyms\": {\n" +
+                "            \"vi\": [],\n" +
+                "            \"en\": []\n" +
+                "        },\n" +
+                "        \"name\": \"Advertising\",\n" +
+                "        \"source_parent_id\": \"502010\",\n" +
+                "        \"id\": \"advertising\",\n" +
+                "        \"source_id\": \"50201010\",\n" +
+                "        \"source\": \"wikipedia\",\n" +
+                "        \"source_url\": \"https://en.wikipedia.org/wiki/Global_Industry_Classification_Standard\"\n" +
+                "    }";
         WebTarget requestTarget = client.target(BaseURL + link);
-
-        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).post();
+        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json(json));
         int actualResponseCode = response.getStatus();
-        int expectedResponseCode = 200;
+        int expectedResponseCode = 401;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
-
     }
 }
