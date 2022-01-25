@@ -7,7 +7,7 @@ import javax.ws.rs.core.Response;
 
 
 
-public class QuestionAnswerTest extends  APITest{
+public class QuestionAnswerTest extends  APITestClass{
 
     @Test
     public void getQuestion(){
