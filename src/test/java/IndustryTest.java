@@ -19,7 +19,7 @@ public class IndustryTest extends APITestClass{
     public void searchIndustries() throws IOException {
         String link = "/api/industries/search";
 //        String params = "?name=Advertising";
-        WebTarget requestTarget = client.target(BaseURL + link).queryParam("name","Advertising");
+        WebTarget requestTarget = client.target(BaseURL + link).queryParam("name","energy");
         Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;

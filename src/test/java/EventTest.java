@@ -10,11 +10,12 @@ public class EventTest extends APITestClass{
     @Test
     public void searchEvents(){
         String link = "/api/events/search";
-        WebTarget requestTarget = client.target(BaseURL + link).queryParam("what","Ngày hội du học Úc").queryParam("where","Nguyễn Huệ");
+        WebTarget requestTarget = client.target(BaseURL + link).queryParam("what","thu nhap");
         Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        System.out.println(response.readEntity(String.class));
     }
     @Test
     public void getEvents(){
