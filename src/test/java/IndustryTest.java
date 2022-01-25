@@ -43,7 +43,7 @@ public class IndustryTest extends APITestClass{
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
     }
     @Test
-    public void createIndustry() throws JsonProcessingException {
+    public void createIndustryNoToken(){
         String link = "/api/industries";
         String json = "{\n" +
                 "        \"types\": [\n" +
@@ -70,6 +70,48 @@ public class IndustryTest extends APITestClass{
         WebTarget requestTarget = client.target(BaseURL + link);
         Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json(json));
+        int actualResponseCode = response.getStatus();
+        int expectedResponseCode = 401;
+        Assert.assertEquals(expectedResponseCode,actualResponseCode);
+    }
+    @Test
+    public void deleteNoToken(){
+        String link = "/api/industries";
+        WebTarget requestTarget = client.target(BaseURL + link).path("61965e8d1440add5d1227c06");
+        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE)
+                .delete();
+        int actualResponseCode = response.getStatus();
+        int expectedResponseCode = 401;
+        Assert.assertEquals(expectedResponseCode,actualResponseCode);
+    }
+    @Test
+    public void updateNoToken(){
+        String link = "/api/industries";
+        String json = "{\n" +
+                "        \"types\": [\n" +
+                "            \"gics\",\n" +
+                "            \"sub_industry\"\n" +
+                "        ],\n" +
+                "        \"names\": {\n" +
+                "            \"vi\": \"quảng cáo\",\n" +
+                "            \"en\": \"Advertising\"\n" +
+                "        },\n" +
+                "        \"level\": 3,\n" +
+                "        \"parent_id\": \"Media\",\n" +
+                "        \"synonyms\": {\n" +
+                "            \"vi\": [],\n" +
+                "            \"en\": []\n" +
+                "        },\n" +
+                "        \"name\": \"Advertising\",\n" +
+                "        \"source_parent_id\": \"502010\",\n" +
+                "        \"id\": \"advertising\",\n" +
+                "        \"source_id\": \"50201010\",\n" +
+                "        \"source\": \"wikipedia\",\n" +
+                "        \"source_url\": \"https://en.wikipedia.org/wiki/Global_Industry_Classification_Standard\"\n" +
+                "    }";
+        WebTarget requestTarget = client.target(BaseURL + link).path("61965e8d1440add5d1227c06");
+        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE)
+                .put(Entity.json(json));
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 401;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
