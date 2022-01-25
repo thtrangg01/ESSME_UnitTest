@@ -1,12 +1,17 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -37,5 +42,17 @@ public class IndustryTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+    }
+    @Test
+    public void createIndustry(){
+        String link = "/api/industries";
+
+        WebTarget requestTarget = client.target(BaseURL + link);
+
+        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).post();
+        int actualResponseCode = response.getStatus();
+        int expectedResponseCode = 200;
+        Assert.assertEquals(expectedResponseCode,actualResponseCode);
+
     }
 }

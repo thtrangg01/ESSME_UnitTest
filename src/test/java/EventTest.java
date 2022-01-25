@@ -8,12 +8,12 @@ import javax.ws.rs.core.Response;
 public class EventTest extends APITestClass{
     @Test
     public void searchEvents(){
-//        String link = "/api/events/search";
-////        WebTarget requestTarget = client.target(BaseURL + link).queryParam("what","");
-////        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
-////        int actualResponseCode = response.getStatus();
-////        int expectedResponseCode = 200;
-////        Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        String link = "/api/events/search";
+        WebTarget requestTarget = client.target(BaseURL + link).queryParam("what","Ngày hội du học Úc").queryParam("where","Nguyễn Huệ");
+        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
+        int actualResponseCode = response.getStatus();
+        int expectedResponseCode = 200;
+        Assert.assertEquals(expectedResponseCode,actualResponseCode);
     }
     @Test
     public void getEvents(){
