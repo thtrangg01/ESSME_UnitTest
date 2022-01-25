@@ -16,6 +16,7 @@ public class EventTest extends APITestClass{
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
         System.out.println(response.readEntity(String.class));
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void getEvents(){
@@ -25,6 +26,7 @@ public class EventTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void getEvent(){
@@ -35,6 +37,7 @@ public class EventTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void createEventNoToken(){

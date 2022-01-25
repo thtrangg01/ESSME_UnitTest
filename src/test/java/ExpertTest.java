@@ -15,16 +15,19 @@ public class ExpertTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void searchExperts(){
         String link = "/api/experts/search";
         WebTarget requestTarget = client.target(BaseURL + link)
-                .queryParam("what","CNTT");
+                .queryParam("what","ai");
         Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        String res = response.readEntity(String.class);
+        Assert.assertTrue(res.substring(res.indexOf("content")+10,res.indexOf("]")).length()>0);
     }
     @Test
     public void getExperts(){
@@ -37,6 +40,8 @@ public class ExpertTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        String res = response.readEntity(String.class);
+        Assert.assertTrue(res.substring(res.indexOf("content")+10,res.indexOf("]")).length()>0);
     }
     @Test
     public void findById(){
@@ -47,6 +52,7 @@ public class ExpertTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void getNumberOfExpertsInEachField(){
@@ -56,6 +62,7 @@ public class ExpertTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void updateNoToken(){

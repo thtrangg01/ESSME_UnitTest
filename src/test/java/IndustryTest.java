@@ -28,6 +28,7 @@ public class IndustryTest extends APITestClass{
 //        requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType<ArrayList<Object>>(){});
 //        System.out.println(response.readEntity(new GenericType<ArrayList<Object>>(){}));
 //        Assert.assertTrue(industries.size() > 0);
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void getIndustries(){
@@ -41,6 +42,7 @@ public class IndustryTest extends APITestClass{
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
+        Assert.assertTrue(response.readEntity(String.class).length()>0);
     }
     @Test
     public void createIndustryNoToken(){
