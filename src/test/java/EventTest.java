@@ -10,13 +10,14 @@ public class EventTest extends APITestClass{
     @Test
     public void searchEvents(){
         String link = "/api/events/search";
-        WebTarget requestTarget = client.target(BaseURL + link).queryParam("what","thu nhap");
+        WebTarget requestTarget = client.target(BaseURL + link).queryParam("what","ai");
         Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
         System.out.println(response.readEntity(String.class));
-        Assert.assertTrue(response.readEntity(String.class).length()>0);
+        String res = response.readEntity(String.class);
+        Assert.assertTrue(res.substring(res.indexOf("content")+10,res.indexOf("]")).length()>0);
     }
     @Test
     public void getEvents(){
