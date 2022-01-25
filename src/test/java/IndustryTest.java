@@ -49,7 +49,8 @@ public class IndustryTest extends APITestClass{
 
         WebTarget requestTarget = client.target(BaseURL + link);
 
-        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE).post();
+        Response response = requestTarget.request(MediaType.APPLICATION_JSON_TYPE)
+                .post();
         int actualResponseCode = response.getStatus();
         int expectedResponseCode = 200;
         Assert.assertEquals(expectedResponseCode,actualResponseCode);
